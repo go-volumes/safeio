@@ -15,6 +15,10 @@ or OOM. This package makes the four near-universal defenses easy to apply:
 
 - **(A) unbounded `make([]byte, N)` → OOM:** `MakeBytes`, `ReadAtFull`
 - **(B) unbounded chain/tree traversal → infinite loop:** `LoopGuard`, `VisitSet`
+  Path walks: `SymlinkBudget` bounds the TOTAL symlinks one lookup follows
+  (a depth limit alone allows 2^40 lookups), and `PostOrder` is an iterative
+  tree walk (for recursive deletes) with a visited set on directory identity
+  and a depth cap (`ErrCycle`, `ErrTooDeep`, `ErrSymlinkLoop`).
 - **(C) fixed-offset read without a length check:** `CheckBounds`, `Slice`
 - **(D) unvalidated geometry → divide-by-zero:** (callers compare to 0)
 
