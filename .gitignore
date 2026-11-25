@@ -1,3 +1,5 @@
 /cover.out
 /testbins/
 *.test
+# mutsweep temp copies, left when a sweep is interrupted
+.*.atomicwrite-*
